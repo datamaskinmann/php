@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  php:
+    image: php:7.1-apache
+    container_name: is-115_php
+    volumes:
+      - ./src/:/var/www/html/
+      - ./etc/apache2/apache2.conf:/etc/apache2/apache2.conf
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/
+    working_dir: /var/www/html/src
+    ports:
+      - 8080:80
+    networks:
+      - is115_network
+  mariadb:
+    image: mariadb:latest
+    container_name: is-115_mariadb
+    networks:
+      - is115_network
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+
+networks:
+  is115_network:
+    driver: bridge
