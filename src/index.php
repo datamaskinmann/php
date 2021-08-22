@@ -1,21 +1,22 @@
 <html>
  <head>
   <title>PHP Test</title>
+  <link rel="stylesheet" href="./stylesheets/menu.css"/>
+  <link rel="stylesheet" href="./stylesheets/body.css"/>
+  <link rel="stylesheet" href="./stylesheets/navBar.css"/>
  </head>
  <body>
- <?php 
-	echo '<p>Hello World</p>'; 
-	
-	$fStream = fopen('./config/database.json', 'r') or die ('Unable to open file');
-	$vars = json_decode(fread($fStream, filesize('./config/database.json')), true);
-	fclose($fStream);
-	
-	$conn = mysqli_connect($vars["host"], $vars["user"], $vars["password"], $vars["database"], $vars["port"]);
-	
-	if($conn->connect_error) {
-		die("Connection failed" . $conn->connect_error);
-	}
-	echo "Connected successfully";
- ?> 
+	<div class="navBar">
+		<a href="./">Hovedmeny</a>
+	</div>
+	<div class="menu">
+	<h3>Modul 1</h3>
+		<ul class="menuUl">
+			<li><a href="/phpInfo.php"/>Oppgave 2 php.ini</a></li>
+			<li><a href="/alder.php"/>Oppgave 3 Alder</a></li>
+			<li><a href="/calc.php"/>Oppgave 4 Kalkulator</a></li>
+			<li><a href="/seconds.php">Oppgave 5 Sekunder</a></li>
+		</ul>
+	</div>
  </body>
 </html>

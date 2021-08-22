@@ -1,0 +1,41 @@
+.menu {
+	font-family: "segoe ui", "serif";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	animation-name: popIn;
+	animation-duration: 0.5s;
+}
+
+h3 {
+	color: #f0a04b;
+}
+
+.menu .menuUl {
+	list-style: none;
+}
+
+.menu .menuUl, li {margin-left: 0; padding-left: 0;}
+
+.menu .menuUl li a {
+	transition: opacity 0.25s;
+	opacity: 1;
+	text-decoration: none;
+	color: #183a1d;
+}
+
+.menu .menuUl li a:hover {
+	transition: all 0.25s;
+	opacity: 0.75;
+}
+
+.menu .menuUl li {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+@keyframes popIn {
+	from {transform: scale(0.75) translate(-50%, -50%);}
+    to {transform: scale(1.0 translate(-50%, -50%);}
+}	
