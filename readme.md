@@ -3,4 +3,4 @@
 ### Kjør docker-compose up --build
 
 ## 2.
-### Gå til localhost:8080
+### Gå til http://localhost:8080
