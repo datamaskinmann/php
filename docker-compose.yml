@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   php:
-    image: php:7.1-apache
+    image: php:8.0-apache
     container_name: is-115_php
     volumes:
       - ./src/:/var/www/html/
@@ -13,6 +13,11 @@ services:
       - 8080:80
     networks:
       - is115_network
+    depends_on:
+      - "mariadb"
+    build:
+      context: ./
+      dockerfile: phpDockerfile
   mariadb:
     image: mariadb:latest
     container_name: is-115_mariadb
@@ -20,6 +25,8 @@ services:
       - is115_network
     environment:
       - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
 
 networks:
   is115_network:

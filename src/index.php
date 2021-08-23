@@ -10,7 +10,12 @@
 	$vars = json_decode(fread($fStream, filesize('./config/database.json')), true);
 	fclose($fStream);
 	
-	$mysqli = mysqli_connect($vars["host"], $vars["user"], $vars["password"], "test", $vars["port"]);
+	$conn = mysqli_connect($vars["host"], $vars["user"], $vars["password"], $vars["database"], $vars["port"]);
+	
+	if($conn->connect_error) {
+		die("Connection failed" . $conn->connect_error);
+	}
+	echo "Connected successfully";
  ?> 
  </body>
 </html>
