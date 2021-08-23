@@ -13,7 +13,7 @@
 	
 	echo "<div class=\"menu\"><h3>4. Kalkulator</h3>";
 	echo "Summen av tallene er " . $tall1 + $tall2 . "<br>";
-	echo "Differansen av tallene er " . $tall1 - $tall2 . "<br>";
+	echo "Differansen av tallene er " .  abs($tall1 - $tall2) . "<br>";
 	echo "Gjennomsnittet av tallene er " . ($tall1+$tall2)/2 . "<br>";
 	echo "</div>";
 ?>
