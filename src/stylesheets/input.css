@@ -1,0 +1,27 @@
+input[type=text], input[type="date"], #text {
+	background-color: #e1eedd;
+}
+
+input, #text {
+	transition: opacity 0.25s;
+	opacity: 1;
+	display: block;
+	border: none;
+	padding: 2ch;
+}
+
+input:hover {
+	cursor: pointer;
+	transition: 0.25s;
+	opacity: 0.75;
+}
+
+input[type=submit] {
+	background-color: #f0ba81;
+}
+
+#text {
+	margin: 2ch;
+	height: 50em;
+	width: 50em;
+}

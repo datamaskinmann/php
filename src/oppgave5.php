@@ -1,41 +1,43 @@
 <html>
 <head>
-	<link rel="stylesheet" href="/stylesheets/body.css"/>
-	<link rel="stylesheet" href="/stylesheets/navBar.css"/>
-	<link rel="stylesheet" href="/stylesheets/menu.css"/>
+    <link rel="stylesheet" href="/stylesheets/body.css"/>
+    <link rel="stylesheet" href="/stylesheets/navBar.css"/>
+    <link rel="stylesheet" href="/stylesheets/menu.css"/>
+    <link rel="stylesheet" href="./stylesheets/input.css"/>
 </head>
-	<div class="navBar">
-		<a href="./">Hovedmeny</a>
-	</div>
-<?php
-	$secs = 4400;
-	
-	echo "<div class=\"menu\"><h3>5. Omgjøring fra sekunder til minutter</h3>";
-	echo $secs . " sekunder er <br>";
-	
-	// At least one hour?
-	if($secs > 3600) {
-		$hours = ($secs - $secs % 3600) / 3600;
-		echo $hours;
-		echo $hours > 1 ? " timer " : " time ";
-		
-		$secs -= 3600 * $hours;
-	}
-	
-	if($secs > 60) {
-		$minutes = ($secs - $secs % 60) / 60;
-		
-		echo $minutes;
-		echo $minutes > 1 ? " minutter " : " minutt ";
-		
-		$secs -= 60 * $minutes;
-	}
-	
-	if($secs > 0) {
-		$secs = ($secs - $secs % 1);
-		echo $secs;
-		echo $secs > 1 ? " sekunder " : " sekund ";
-	}
-	echo "</div>";
-?>
+<div class="navBar">
+    <a href="./">Hovedmeny</a>
+</div>
+<div class="menu">
+    <h3>Modul 2 - Oppgave 5</h3>
+    <h4>Ditt tilfeldig-genererte passord</h4>
+    <br/>
+    <?php
+        // Tillatte karakterer i passordgenereringen
+        // A-Z og 0-9
+        $allowedChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // Opprette en buffer for passordet
+        $buffer = "";
+        // Evig løkke
+        while(true) {
+            // Resette bufferen
+            $buffer = "";
+
+            // Generere en streng der vi legger til tilfeldige karakterer fra
+            // våre tillatte karakterer
+            for($i = 0; $i < 8; $i++) {
+                $buffer .= $allowedChars[rand(0, strlen($allowedChars) -1)];
+            }
+
+            // Inneholder strengen en karakter mellom stor A og stor Z
+            // og inneholder strengen et tall mellom 0-9?
+            if(preg_match('/[A-Z]/', $buffer) && preg_match('/[0-9]/', $buffer)){
+                // Ja -> bryt ut av løkken
+                break;
+            }
+        }
+        // Skrive resultatet til brukeren
+        echo $buffer;
+    ?>
+</div>
 </html>

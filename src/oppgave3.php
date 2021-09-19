@@ -1,23 +1,22 @@
 <html>
- <head>
-  <title>PHP Test</title>
-  <link rel="stylesheet" href="./stylesheets/menu.css"/>
-  <link rel="stylesheet" href="./stylesheets/body.css"/>
-  <link rel="stylesheet" href="./stylesheets/navBar.css"/>
- </head>
- <body>
- 	<div class="navBar">
-		<a href="./">Hovedmeny</a>
-	</div>
- <?php
-	$navn = "Sven";
-	$alder = 21;
-	
-	
-	echo "<div class=\"menu\"><h3>1. Nummerert liste</h3><ol><li>" . $navn . "</li><li>" . $alder . "</li></ol>";
-	echo "<h3>2. Punktmerket liste</h3><ul style=\"list-style: circle;\"><li>" . $navn . "</li><li>" . $alder . "</li></ul>";
-	echo "<h3>3. Paragraf</h3><p>" . $navn . "<br>" . $alder . "</p>";
-	echo "</div>";
- ?>
- </body>
+<head>
+    <link rel="stylesheet" href="/stylesheets/body.css"/>
+    <link rel="stylesheet" href="/stylesheets/navBar.css"/>
+    <link rel="stylesheet" href="/stylesheets/menu.css"/>
+    <link rel="stylesheet" href="./stylesheets/input.css"/>
+</head>
+<div class="navBar">
+    <a href="./">Hovedmeny</a>
+</div>
+<div class="menu">
+    <h3>Modul 2 - Oppgave 3</h3>
+    <form action="/src/wordInstanceCounter.php" method="get">
+        <textarea name="richText" id="text" placeholder="Din tekst">
+Thereses familie skulle ha ris til middag. Hun ville heller ha en is å spise.
+        </textarea>
+        <br/>
+        <input style="display: inline-block" type="text" value="is" name="word" placeholder="Et ord"/>
+        <input style="float: right" type="submit" value="Send inn"/>
+    </form>
+</div>
 </html>
