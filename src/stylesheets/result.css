@@ -1,0 +1,19 @@
+.result {
+	position: absolute;
+}
+
+.resultBox {
+	width: 10vw;
+	display: inline-block;
+	padding: 1em;
+	margin: 0.5em;
+	background-color: #e1eedd;
+	border-radius: 0.5em;
+	animation-name: anim;
+	animation-duration: 0.5s;
+}
+
+@keyframes anim {
+	from { transform: scale(0.1) rotateZ(90deg) }
+	to { transform: scale(1.0) rotateZ(0deg) }
+}
