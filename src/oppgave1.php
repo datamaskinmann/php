@@ -20,11 +20,14 @@
     </form>
 	<div>
 	<?php
+	// Sjekke om post parametere name og age eksisterer
 	if(empty($_POST["name"]) || empty($_POST["age"])) return;
 	echo "<div class='result' style='width: 50vw'>";
 		echo "<br/></br>";
 		echo "<h3 style='display: inline-block'>" . $_POST["name"] . "</h3> er <h3 style='display: inline-block'>" . $_POST["age"] . "</h3> og dermed ";
+		// Er personen under 18?
 		if($_POST["age"] < 18) {
+			// legg til ikke
 			echo " ikke ";
 		}
 		echo " myndig</div>";

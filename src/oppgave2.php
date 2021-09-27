@@ -12,9 +12,13 @@
 <div class="menu">
     <h3>Modul 3 - Oppgave 2</h3>
 	<?php
+	// Opprette en buffer for summen
 	$sum = 0;
+		// Iterere gjennom tallene 0-9
 		for($i = 0; $i <= 9; $i++) {
+			// Printe ut tallet
 			echo $i . "<br/>";
+			// Legge til tallet i sum bufferen
 			$sum += $i;
 		}
 		echo "Ferdig å telle! Summen av tallene ble " . $sum;

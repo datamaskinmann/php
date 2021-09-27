@@ -15,6 +15,8 @@
             <li><a href="/oppgave1.php"/>Oppgave 1 - Myndig/ikke myndig</a></li>
 			<li><a href="/oppgave2.php"/>Oppgave 2 - Teller</a></li>
 			<li><a href="/oppgave3.php"/>Oppgave 3 - Liten regnemaskin</a></li>
+			<li><a href="/oppgave4.php"/>Oppgave 4 - Fylkestilhørighet<a></li>
+			<li><a href="/oppgave5.php"/>Oppgave 5 - Sjakk og Hvete<a></li>
 		</ul>
 	</div>
  </body>
