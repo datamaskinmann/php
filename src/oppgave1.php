@@ -10,27 +10,29 @@
     <a href="./">Hovedmeny</a>
 </div>
 <div class="menu">
-    <h3>Modul 3 - Oppgave 1</h3>
-    <form action="" method="post">
-        <input name="name" type="text" placeholder="Navn..."/>
-        <br/>
-		<input name="age" type="number" placeholder="Alder..."/>
-		<br>
-        <input style="float: right" type="submit" value="Send inn"/>
-    </form>
-	<div>
+    <h3>Modul 4 - Oppgave 1</h3>
 	<?php
-	// Sjekke om post parametere name og age eksisterer
-	if(empty($_POST["name"]) || empty($_POST["age"])) return;
-	echo "<div class='result' style='width: 50vw'>";
-		echo "<br/></br>";
-		echo "<h3 style='display: inline-block'>" . $_POST["name"] . "</h3> er <h3 style='display: inline-block'>" . $_POST["age"] . "</h3> og dermed ";
-		// Er personen under 18?
-		if($_POST["age"] < 18) {
-			// legg til ikke
-			echo " ikke ";
+		// Definere tom matrise
+		$a = [];
+		
+		// Sette indeksene som gitt i oppgavebeskrivelsen
+		$a[0] = 1;
+		$a[3] = 2;
+		$a[5] = 3;
+		$a[7] = 4;
+		$a[8] = 5;
+		$a[15] = 6;
+		
+		echo "<h3>print_r</h3>";
+		// Skrive ut matrisen ved hjelp av print_r
+		print_r($a);
+		echo "<br/>";
+		
+		// Skrive ut matrisen ved hjelp av løkke
+		echo "<h3>Løkke</h3>";
+		foreach($a as $i => $val) {
+			echo "[" . $i . "] => " . $val . " ";
 		}
-		echo " myndig</div>";
 	?>
 	</div>
 </html>
