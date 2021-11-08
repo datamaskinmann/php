@@ -68,9 +68,7 @@
 		}
 		
 		function decrypt($text, $offset) {
-			
-			return encrypt($text, $offset);
-			
+			return encrypt($text, $offset);	
 		}
 		
 		if(!empty($_POST["encryptText"])) echo(encrypt($_POST["encryptText"], $caesarOffset));
