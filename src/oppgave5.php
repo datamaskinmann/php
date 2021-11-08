@@ -9,115 +9,72 @@
 <div class="navBar">
     <a href="./">Hovedmeny</a>
 </div>
-<div class="menu" style="max-height: 90%; overflow-y: scroll">
-    <h3>Modul 4 - Oppgave 5</h3>
-	<?php
+<div class="menu">
+    <h3>Modul 5 - Oppgave 5</h3>
+	<form action="" method="POST">
+		<label>Kryptering</label>
+		<input type="text" name="encryptText" placeholder="Din tekst..."/>
+		<input type="submit" name="encrypt"/>
+	</form>
 	
-		// Matrise for deltagere
-		$participants = array(
-			"Jens" => 0,
-			"Kristian" => 0,
-			"Pelle" => 0,
-			"Kristina" => 0,
-			"Frøya" => 0,
-			"Gina" => 0,
-			"½geir" => 0,
-			"Geir" => 0,
-			"Stian" => 0,
-			"Julia" => 0,
-		);
+	<form action="" method="POST">
+		<label>Dekryptering</label>
+		<input type="text" name="decryptText" placeholder="Din tekst..."/>
+		<input type="submit" name="decrypt"/>
+	</form>
+	<?php
+		// Determinere offseten for cæsarschiffreringen vår
+		$caesarOffset = -7;
 		
-		echo "<h3>Deltagere i konkurransen</h3>";
+		// Determinere de tillatte karakterene
+		$chars = ['a','b','c','d','e','f','g','h','i','j',
+		'k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 		
-		// Printe deltagere
-		foreach(array_keys($participants) as $n) {
-			echo $n . "<br/>";
-		}
-		
-		$round = 1;
-		
-		// Løkke som brytes når det er 1 deltager igjen
-		while(count($participants) > 1) {
-			// Printe ut hvilken runde det er
-			echo "<h3>Runde " . $round . "</h3>";
-			// Trekke poeng for deltagerene
-			drawPoints();
-			// Sortere etter synkende verdi
-			arsort($participants);
-			// Printe ut deltager samt poeng
-			printArray($participants);
-			// Hente ut matrise over spillere med lavest poeng
-			$l = getLowestScores();
-			// Fjerne de fra deltager matrisen
-			removeIndexes($participants, array_keys($l));
-			// Gi beskjed til brukeren hvem som har blitt fjernet
-			echo "<h3>-----------------------------</h3>";
-			echo "<h3>Fjernede deltagere</h3>";
-			printArray($l);
-			echo "<h3>-----------------------------</h3>";
-			// Inkrementere rundenummer
-			$round++;
-		}
-		
-		// Løkken har brutt, det er kun 1 deltager igjen, printe
-		// vinneren til brukeren
-		echo "<h3>Vinneren er</h3>";
-		echo array_keys($participants)[0];
-		
-		// Funksjon for å trekke poeng for brukerene
-		function drawPoints() {
-			global $participants;
-			foreach(array_keys($participants) as $n) {
-				// Trekke tall mellom 1 og 50
-				$participants[$n] = rand(1, 50);
-				// Hvis det kun er to deltagere igjen og de ruller likt må
-				// de rulle igjen for å avgjøre
-				if(count($participants) == 2 && array_values($participants)[0] == 
-				array_values($participants)[1]) {
-					drawPoints();
+		function encrypt($text, $offset) {
+			global $chars;
+			
+			// Opprette buffer for resultatet
+			$buffer = "";
+			
+			foreach(str_split($text) as $c) {
+				// Vi ønsker å beholde mellomrom inntakte
+				// Dermed utfører vi ingen 'kryptering' av mellomrom
+				
+				if($c == " ") {
+					$buffer .= " ";
+					continue;
 				}
-			}
-		}
+				
+				// Finne indeksen av $c i $chars
+				$i = array_search(strtolower($c), $chars, true);
 		
-		// Funksjon for å printe ut en matrise
-		function printArray($a) {
-			foreach($a as $key => $value) {
-				echo $key . " <h3 style='display: inline-block; margin: 0'>[" . $value . "]</h3><br/>";
-			}
-		}
-		
-		// Funksjon for å hente ut en matrise
-		// over deltager(e) med lavest poeng
-		function getLowestScores() {
-			global $participants;
-			
-			// Opprette buffer for deltager(e)
-			// med lavest poeng
-			$buffer = [];
-			
-			// Sortere etter synkende verdi
-			asort($participants);
-			// Hente ut første elementet av sortert matrise (lavest poeng)
-			$lowest = reset($participants);
-			
-			foreach($participants as $key => $value) {
-				// Hvis verdien ikke er det
-				// samme som den laveste verdien i matrisen, brytes løkken
-				if($value != $lowest) break;
-				// Ellers legges deltageren til i matrisen over
-				// fjernede deltagere
-				$buffer[$key] = $value;
+				if($i + $offset > count($chars) - 1) {
+					// Hvis den nye bokstaven er utenfor lengden av matrisen,
+					// må vi gå rundt til begynnelsen av matrisen igjen
+					$buffer .= $chars[(($i+$offset)-(count($chars)-1))-1];
+					continue;
+				}
+				if($i + $offset < 0) {
+					// Hvis den nye bokstaven er utenfor lengden av matrisen i den andre retningen
+					// må vi gå rundt til slutten av matrisen igjen
+					$buffer .= $chars[count($chars)-abs(($offset+$i))];
+					continue;
+				}
+				// Den nye bokstaven er innenfor lengden av matrisen
+				$buffer .= $chars[$i + $offset];
 			}
 			
 			return $buffer;
 		}
 		
-		// Funksjon for å fjerne gitte indekser på en matrise
-		function removeIndexes(&$a, $e) {
-			foreach($e as $element) {
-				unset($a[$element]);
-			}
+		function decrypt($text, $offset) {
+			
+			return encrypt($text, $offset);
+			
 		}
+		
+		if(!empty($_POST["encryptText"])) echo(encrypt($_POST["encryptText"], $caesarOffset));
+		if(!empty($_POST["decryptText"])) echo(encrypt($_POST["decryptText"], -$caesarOffset));
 	?>
 	</div>
 </html>
